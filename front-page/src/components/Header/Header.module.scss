@@ -1,0 +1,27 @@
+.header{
+    &Content {
+        height: 80px;
+        background: #0A223D;
+    }
+    &Nav{
+        height: 100%;
+        width: 100%;
+        max-width: 1110px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        &Ul {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            & > li > a {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 18px;
+                text-transform: uppercase;
+                color: #FFFFFF;
+            }
+        }
+    }
+}

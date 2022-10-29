@@ -1,0 +1,19 @@
+.card {
+    width: 250px;
+    height: 350px;
+    border-radius: 8px 8px 0px 0px;
+    background: #0A223D;
+    &Text {
+        font-family: 'Mulish';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 30px;
+        color: #FFFFFF;
+        margin: 30px;
+        &Title {
+            font-size: 28px;
+            padding-bottom: 10px;
+        }
+    }
+}
