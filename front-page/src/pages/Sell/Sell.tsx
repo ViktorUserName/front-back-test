@@ -24,33 +24,20 @@ import s from './Sell.module.scss'
 // }
 
 const Sell: React.FC = () => {
-    const [item, setItems] = useState(null)
-    // useEffect(() => {const response = await fetch("http://localhost:3001/api/cards", {
-    //     mode: 'no-cors',
-    //     method: "GET",
-    //     headers: {"Accept": "application/json"}
-    // });
-    // let card = response.json()
-    // console.log(card)
-    // if (response.ok === true){
-    //      const cards = await response.json()
-    //     }
-    // })
-    // useEffect(() => {
-    //     fetch('http://localhost:3001/api/cards',{
-    //         mode: "no-cors",
-    //         method: "GET",
-    //         headers: {"Accept":"application/json"}
-    //     })
-    //     .then(response => response.json())
-    // },[])
+    const [data, setData] = useState<any[]>([])
+    let controller = new AbortController();
+
     useEffect(() => {
-        fetch('http://localhost:3001/api/cards',{mode: "no-cors"})
-        .then(response => response.json())
-        .then((data) => {
-            console.log(data)
-        })
-    })
+        fetch('http://localhost:3001/api/cards')
+            .then((res) => {
+                if (res.ok){
+                    return res.json()
+                }
+                throw new Error('bad respons')
+                })
+            .then((res)=> setData(res.enter))
+            .catch((err) => console.log(err))
+    }, [])
 
     return (
         <div className={s.sell}>
@@ -58,15 +45,9 @@ const Sell: React.FC = () => {
                 <div className={s.sellContent}>
                     <h2 className={s.sellTitle}>Other Packages</h2>
                     <div className={s.sellCardsGroup}>
-                        {/* <CardSell img='https://i.ibb.co/2WspKMj/Rectangle-20.png' id={1} h1='title' price='price'/> */}
-                        <div>
-                            {/* {item.map((post)=>{
-                                <div key={post.id}>{post.id}</div>
-                            })} */}
-                            {
-                                // <div>{item[0].title}</div>
-                            }
-                        </div>
+                            {data && data.map((data)=>{
+                                return <CardSell key={data.id} id={data.id} h1={data.h1} price={data.price} img={data.img}/>
+                            })}
                     </div>
                 </div>
             </div>

@@ -1,4 +1,6 @@
 .sell {
+    height: 700px;
+    background: rgba($color: #f2c0c0, $alpha: 1.0);
     &Title{
         text-align: center;
         font-weight: 700;
@@ -7,5 +9,10 @@
         text-align: center;
         text-transform: uppercase;
         margin: 50px;
+    }
+    &CardsGroup {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
     }
 }

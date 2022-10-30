@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
 import {
   Route,
   Routes
 } from "react-router-dom";
 import Sell from './pages/Sell/Sell';
+import Header from './components/Header/Header';
+
+// const ThemeContext = React.createContext('light')
 
 
 function App() {
@@ -13,7 +15,9 @@ function App() {
     <div className="App">
       <Header/>
       <Routes>
+        {/* <ThemeContext.Provider value='dark'> */}
         <Route path='/cards' element={<Sell/>}/>
+        {/* </ThemeContext.Provider> */}
       </Routes>
     </div>
   );
