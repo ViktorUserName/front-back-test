@@ -6,19 +6,24 @@ import {
 } from "react-router-dom";
 import Sell from './pages/Sell/Sell';
 import Header from './components/Header/Header';
+import Main from './pages/Main/Main';
 
-// const ThemeContext = React.createContext('light')
+import dataJson from './providerData/data.json'
+import { DataProvider } from './providerData/providerFirst';
+
 
 
 function App() {
+  const {enter : data} = dataJson;
   return (
     <div className="App">
       <Header/>
-      <Routes>
-        {/* <ThemeContext.Provider value='dark'> */}
-        <Route path='/cards' element={<Sell/>}/>
-        {/* </ThemeContext.Provider> */}
-      </Routes>
+        <DataProvider value={data}>
+          <Routes>
+              <Route path='/' element={<Main/>}/>
+              <Route path='/cards' element={<Sell/>}/>
+          </Routes>
+        </DataProvider>
     </div>
   );
 }

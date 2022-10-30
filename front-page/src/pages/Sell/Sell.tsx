@@ -2,27 +2,6 @@ import React, {FC, useState, useEffect} from 'react';
 import CardSell from './card/CardSell';
 import s from './Sell.module.scss'
 
-// async function GetCards() {
-//     const response = await fetch("http://localhost:3001/api/cards", {
-//         mode: 'no-cors',
-//         method: "GET",
-//         headers: {"Accept": "application/json"}
-//     });
-//     if (response.ok === true){
-//          const cards = await response.json()
-//         }
-// };
-// let data  = GetCards();
-// console.log(data)
-
-// let response =  await fetch("http://localhost:3001/api/cards", {
-//     method: "GET",
-//     headers: {"Accept": "application/json"}
-// });
-// if (response.ok) {
-
-// }
-
 const Sell: React.FC = () => {
     const [data, setData] = useState<any[]>([])
     let controller = new AbortController();
