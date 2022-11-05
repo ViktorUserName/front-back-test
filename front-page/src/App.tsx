@@ -7,22 +7,10 @@ import {
 import Sell from './pages/Sell/Sell';
 import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
+import img from './assets/moon.svg';
+import img2 from './assets/moon.svg';
 
-// import dataJson from './providerData/data.json'
-// import { DataProvider } from './providerData/providerFirst';
-// const themes = {
-//   light: {
-//     background: "#eeeeee"
-//   },
-//   dark: {
-//     background: "#222222"
-//   }
-// };
 
-// export const DataContext = createContext(themes.light);
-// const DataProvider = DataContext.Provider;
-// const DataConsumer = DataContext.Consumer
-// const ColorProvider = ColorContext.Provider
 type Theme = 'light' | 'dark';
 type ThemeContextType = {
   theme: Theme;
@@ -40,16 +28,28 @@ const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
 }
 
 const ThemeWrapper:React.FC<{children: React.ReactNode}> = ({children}) => {
+  const [valueState, setvalueState] = useState('white')
+  const handlerValue = () => {
+    if(valueState === 'white'){
+      setvalueState('dark')
+    } else if (valueState === 'dark'){
+      setvalueState('white')
+    }
+  }
+
+
   const {theme, changeTheme} = React.useContext(ThemeCotext) as ThemeContextType;
-  const handlerThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handlerThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     changeTheme(event.target.value as Theme);
   }
   return (
     <div className="Theme-wrapper" data-theme={theme}>
-      <select name="toggleTheme" onChange={handlerThemeChange} id="">
+      {/* <select name="toggleTheme" onChange={handlerThemeChange} id="">
         <option value="light">Light</option>
         <option value="dark">Dark</option>
-      </select>
+      </select> */}
+      <input className="checkbox" type="checkbox" id="reg-log" onChange={handlerThemeChange} value={valueState} name="reg-log"/>
+      <label className='tea' htmlFor="reg-log" onClick={handlerValue}></label>
       {children}
     </div>
   )
