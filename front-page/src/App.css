@@ -22,3 +22,24 @@ img {
   width: auto;
   display: block;
 }
+
+
+/*  */
+
+[data-theme='dark'].Theme-wrapper {
+  color: white;
+  /* background-color: black; */
+}
+[data-theme='dark'] .testContent {
+  background: black;
+}
+
+
+.testContent {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
