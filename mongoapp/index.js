@@ -1,31 +1,36 @@
-const { MongoClient } = require('mongodb');
+const express = require('express');
+const {MongoClient} = require('mongodb');
+const {ObjectId} = require('mongodb');
+const cors = require('cors');
 
-const url = "mongodb://0.0.0.0:27017/";
-const client = new MongoClient(url, { monitorCommands:true });
+const app = express();
+const jsonParser = express.json();
+
+const client = new MongoClient('mongodb://0.0.0.0:27017/')
 const dbname = 'cardsdb';
 
-
-async function main() {
-    await client.connect();
-    console.log('connect successfull');
-    const db = client.db(dbname)
-    const collection = db.collection('card')
-    
-    // const test = await collection.findOneAndUpdate(
-    //     {id:1}, {$set: {price: '20000'}}, {returnDocument: 'after'}
-    //     )
-    // const test = await collection.find({}).project({id:1, _id:0}).toArray();
-    // const test = await client.db(dbname).collection('card').countDocuments()
-   // const ping = await db.command({ping:1});
-    console.log(test);
-  
-    // console.log('here:', insertry);
-    
-    // console.log(ping);
-    
+let corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200
 }
+app.use(cors(corsOptions));
 
-main()
-// .then(console.log)
-.catch(console.error)
-.finally(() => client.close())
+(async () => {
+    await client.connect();
+    console.log('connect db successfull');
+    app.locals.collection = client.db(dbname).collection('card');
+    app.listen(3001);
+    console.log("Сервер ожидает подключения...");
+})().catch(console.error);
+
+app.get('/api/cards', async(request, response)=>{
+    const collection = request.app.locals.collection;
+    const cards = await collection.find({}).project({_id:0}).toArray();
+    response.send(cards)
+});
+
+process.on('SIGINT', async() => {
+    await client.close();
+    console.log('app close work');
+    process.exit();
+})

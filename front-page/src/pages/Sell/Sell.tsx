@@ -14,7 +14,7 @@ const Sell: React.FC = () => {
                 }
                 throw new Error('bad respons')
                 })
-            .then((res)=> setData(res.enter))
+            .then((res)=> setData(res))
             .catch((err) => console.log(err))
     }, [])
 
