@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавление пользователя</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>Добавление пользователя</h1>
+     <form action="postUser" method="POST">
+        <label>Имя</label>
+        <input name="name" /><br><br>
+        <label>Возраст</label>
+        <input name="age" type="number" min="1" max="110" /><br><br>
+        <input type="submit" value="Отправить" />
+     </form>
+     <a href="/users">К списку пользователей</a>
+</body>
+<html>

@@ -3,6 +3,12 @@ const app = express();
 const userRouter = require("./routes/userRouter.js");
 const homeRouter = require("./routes/homeRouter.js");
 
+////
+app.set("view engine", "hbs");
+app.use(express.urlencoded({ extended: false }));
+////
+
+
 app.use('/users', userRouter);
 app.use('/', homeRouter);
 
