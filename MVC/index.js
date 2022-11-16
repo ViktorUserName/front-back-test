@@ -1,11 +1,12 @@
 const express = require('express');
+const mongoose = require('mongoose')
 const app = express();
 const userRouter = require("./routes/userRouter.js");
 const homeRouter = require("./routes/homeRouter.js");
 
 ////
-app.set("view engine", "hbs");
-app.use(express.urlencoded({ extended: false }));
+// app.set("view engine", "hbs");
+// app.use(express.urlencoded({ extended: false }));
 ////
 
 
@@ -17,7 +18,10 @@ app.use(function(request, response, next){
     response.status(404).send('that page not found');
 });
 
-app.listen(3001);
+mongoose.connect('mongodb://0.0.0.0:27017/Usersdb', { useUnifiedTopology: true }, function(err){
+    if(err) return console.log(err);
+    app.listen(3001);
+});
 
 
 
