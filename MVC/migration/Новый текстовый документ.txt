@@ -1,1 +1,2 @@
 https://stackoverflow.com/questions/4880874/how-do-i-create-a-mongodb-dump-of-my-database
+mongodump -d order --out "c:\deldb"
